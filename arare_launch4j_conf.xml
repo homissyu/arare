@@ -1,0 +1,74 @@
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\Jay\Documents\NetBeansProjects\arare\dist\arare.jar</jar>
+  <outfile>C:\Users\Jay\Documents\NetBeansProjects\arare\dist\arare.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine>-Xms512M -Xmx512M</cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>C:\Users\Jay\Documents\NetBeansProjects\arare\arare.ico</icon>
+  <classPath>
+    <mainClass>com.jay.gui.JayFrame</mainClass>
+    <cp>lib/Altibase.jar</cp>
+    <cp>lib/cubrid_jdbc.jar</cp>
+    <cp>lib/db2jcc4.jar</cp>
+    <cp>lib/hippolf.jar</cp>
+    <cp>lib/jsr173_api.jar</cp>
+    <cp>lib/jxl.jar</cp>
+    <cp>lib/kunststoff.jar</cp>
+    <cp>lib/liquid.jar</cp>
+    <cp>lib/macos.jar</cp>
+    <cp>lib/napkinlaf-swingset2.jar</cp>
+    <cp>lib/sqljdbc4.jar</cp>
+    <cp>lib/nimrodlf-0.93.jar</cp>
+    <cp>lib/OfficeLnFs_2.1.jar</cp>
+    <cp>lib/ojdbc14.jar</cp>
+    <cp>lib/PgsLookAndFeel.jar</cp>
+    <cp>lib/sjsxp.jar</cp>
+    <cp>lib/swing-layout.jar</cp>
+    <cp>lib/tibero4-jdbc.jar</cp>
+    <cp>lib/xmlparserv2.jar</cp>
+    <cp>lib/xsu12.jar</cp>
+    <cp>lib/postgresql-9.1-901.jdbc4.jar</cp>
+    <cp>lib/mysql-connector-java-5.1.18-bin.jar</cp>
+    <cp>lib/commons-codec-1.7.jar</cp>
+    <cp>lib/jsch-0.1.50.jar</cp>
+    <cp>lib/commons-io-2.4.jar</cp>
+    <cp>lib/commons-lang3-3.1.jar</cp>
+    <cp>lib/commons-net-3.3.jar</cp>
+  </classPath>
+  <jre>
+    <path></path>
+    <bundledJre64Bit>false</bundledJre64Bit>
+    <minVersion>1.6.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+    <initialHeapSize>512</initialHeapSize>
+    <initialHeapPercent>25</initialHeapPercent>
+    <maxHeapSize>512</maxHeapSize>
+    <maxHeapPercent>25</maxHeapPercent>
+  </jre>
+  <splash>
+    <file>C:\Users\Jay\Documents\NetBeansProjects\arare\arare.bmp</file>
+    <waitForWindow>true</waitForWindow>
+    <timeout>60</timeout>
+    <timeoutErr>true</timeoutErr>
+  </splash>
+  <versionInfo>
+    <fileVersion>0.9.2.8</fileVersion>
+    <txtFileVersion>ver 0.9.2.8</txtFileVersion>
+    <fileDescription>SQL Launcher for various DBMS</fileDescription>
+    <copyright>Jay.choi</copyright>
+    <productVersion>0.9.2.8</productVersion>
+    <txtProductVersion>ver 0.9.2.8</txtProductVersion>
+    <productName>Arare SQL Launcher</productName>
+    <companyName></companyName>
+    <internalName>Arare SQL Launcher</internalName>
+    <originalFilename>arare.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>

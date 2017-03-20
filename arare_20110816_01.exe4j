@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exe4j version="4.0.3" transformSequenceNumber="1">
+  <directoryPresets config="C:/Users/Jay/Documents/NetBeansProjects/arare/dist/lib" />
+  <application name="Arare" distributionSourceDir="C:/Users/Jay/Documents/NetBeansProjects/arare/dist">
+    <languages>
+      <principalLanguage id="en" customLocalizationFile="" />
+    </languages>
+  </application>
+  <executable name="arare" type="1" iconSet="true" iconFile="C:/Users/Jay/Documents/NetBeansProjects/arare/arare.ico" executableDir="." redirectStderr="true" stderrFile="error.log" redirectStdout="true" stdoutFile="output.log" failOnStderrOutput="true" executableMode="1" changeWorkingDirectory="true" workingDirectory="." singleInstance="true" serviceStartType="2" serviceDependencies="" serviceDescription="" jreLocation="" executionLevel="asInvoker" amd64="false">
+    <messageSet />
+    <versionInfo include="true" fileVersion="22" fileDescription="sql launcher for various DBMS" legalCopyright="GNU" internalName="arare" companyName="Jay" productVersion="0.9.8" />
+  </executable>
+  <splashScreen show="true" autoOff="true" alwaysOnTop="true" width="256" height="256" bitmapFile="C:/Users/Jay/Documents/NetBeansProjects/arare/arare.bmp">
+    <text>
+      <statusLine x="10" y="5" text="Loading ..." font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
+      <versionLine x="174" y="5" text="version %VERSION%" font="Arial" fontSize="8" fontColor="0,0,0" fontWeight="500" />
+    </text>
+  </splashScreen>
+  <java mainClass="com.jay.gui.JayFrame" vmParameters="" arguments="" allowVMPassthroughParameters="true" preferredVM="" minVersion="1.6" maxVersion="" allowBetaVM="true" jdkOnly="false">
+    <searchSequence>
+      <envVar name="JDK_HOME" />
+      <envVar name="JAVA_HOME" />
+      <registry />
+    </searchSequence>
+    <classPath>
+      <archive location="./arare.jar" failOnError="false" />
+      <archive location="./lib/Altibase.jar" failOnError="false" />
+      <archive location="./lib/commons-codec-1.7.jar" failOnError="false" />
+      <archive location="./lib/commons-io-2.4.jar" failOnError="false" />
+      <archive location="./lib/commons-lang3-3.1.jar" failOnError="false" />
+      <archive location="./lib/commons-net-3.3.jar" failOnError="false" />
+      <archive location="./lib/cubrid_jdbc.jar" failOnError="false" />
+      <archive location="./lib/db2jcc4.jar" failOnError="false" />
+      <archive location="./lib/jsch-0.1.50.jar" failOnError="false" />
+      <archive location="./lib/jsr173_api.jar" failOnError="false" />
+      <archive location="./lib/jxl.jar" failOnError="false" />
+      <archive location="./lib/macos.jar" failOnError="false" />
+      <archive location="./lib/mysql-connector-java-5.1.18-bin.jar" failOnError="false" />
+      <archive location="./lib/ojdbc14.jar" failOnError="false" />
+      <archive location="./lib/postgresql-9.1-901.jdbc4.jar" failOnError="false" />
+      <archive location="./lib/sjsxp.jar" failOnError="false" />
+      <archive location="./lib/sqljdbc4.jar" failOnError="false" />
+      <archive location="./lib/swing-layout.jar" failOnError="false" />
+      <archive location="./lib/tibero4-jdbc.jar" failOnError="false" />
+      <archive location="./lib/xmlparserv2.jar" failOnError="false" />
+      <archive location="./lib/xsu12.jar" failOnError="false" />
+    </classPath>
+    <nativeLibraryDirectories>
+      <directory name="./lib" />
+    </nativeLibraryDirectories>
+  </java>
+  <includedFiles />
+  <unextractableFiles />
+</exe4j>
+
