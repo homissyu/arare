@@ -57,6 +57,11 @@ public class ScrollPopupDialog extends javax.swing.JDialog {
                 formPropertyChange(evt);
             }
         });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                formKeyReleased(evt);
+            }
+        });
 
         jList2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -132,8 +137,12 @@ public class ScrollPopupDialog extends javax.swing.JDialog {
 
     private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
         // TODO add your handling code here:
-//        System.out.println(evt.getKeyCode());
-        switch(evt.getKeyCode()){
+        System.out.println(evt.getKeyCode());
+
+        switch(evt.getKeyCode()){            
+            case 27:
+                this.setVisible(false);
+                break;
             case 10:
                 String aText = this.jTextField1.getText();
                 aText = aText.toUpperCase();
@@ -171,6 +180,10 @@ public class ScrollPopupDialog extends javax.swing.JDialog {
     private void jList2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jList2KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jList2KeyPressed
+
+    private void formKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyReleased
 
     /**
      * @param args the command line arguments

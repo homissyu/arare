@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TreeMap;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -75,7 +76,7 @@ public class TreeBean extends JPanel {
     /**
     * @param data
     */
-    public boolean setModel(HashMap aObjMap, String aDBType){
+    public boolean setModel(TreeMap aObjMap, String aDBType){
 //        System.out.println(aObjMap);
         boolean ret = false;
         mDBType = aDBType;

@@ -17,6 +17,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TreeMap;
 import java.util.Vector;
 
 public class DBUtil {
@@ -29,10 +30,19 @@ private String SUBSYSTEM = "DBUtil";
         mActionStatement.cancel();
     }
 
-    public HashMap getTableAndViews(DatabaseConnection aDBconnection) throws JayException {
-        HashMap ret = new HashMap();
+    private int getResultSetCnt(ResultSet rs) throws SQLException{
+        int ret = 0;
+        while(rs.next()){
+            ret++;
+        }
+        return ret;
+    }
+    
+    public TreeMap getTableAndViews(DatabaseConnection aDBconnection) throws JayException {
+//        HashMap ret = new HashMap();
+        TreeMap ret = new TreeMap();
         ResultSet rset = null;
-        ResultSetMetaData rsmd = null;
+//        ResultSetMetaData rsmd = null;
         DatabaseMetaData dmd = null;
         ResultSet rs = null;
         ArrayList aTempList = null;
@@ -44,42 +54,29 @@ private String SUBSYSTEM = "DBUtil";
                 throw new JayException("Connection is null");
             }
             dmd = conn.getMetaData();
-            
             if(dmd.getDatabaseProductName().equalsIgnoreCase(CommonConst.DATABASE_TYPE[2]))
                 rs = dmd.getCatalogs();
             else
                 rs = dmd.getSchemas();
-                
+            
             aTempList = CommonUtil.getArrayList(rs);
 
-            String aTempSchema;
-/**
- * to remove non-user's schemas
- * */
-//            switch(aDBconnection.getDBType()){
-//                case CommonConst.ORACLE_TYPE:
-//                    aTempSchema = aDBconnection.getUsername();
-//                    break;
-//                case CommonConst.MSSQLSERVER_TYPE:
-//                    aTempSchema = CommonConst.MSSQL_DBO;
-//                    break;
-//                default:
-//                    aTempSchema = aDBconnection.getServerName();
-//                    break;                   
-//            }
-            
+            String aTempSchema = null;
             String aTempObjCategory = null;
-            String aTempObjScheme = null;
-            String aTempObjName = null;
+//            String aTempObjScheme = null;
+//            String aTempObjName = null;
             String aTempObjType = null;
-            String aTempObjDesc = null;
+//            String aTempObjDesc = null;
             
             it = aTempList.iterator();
             
             while(it.hasNext()){
                 ArrayList aRow = (ArrayList)it.next();
                 aTempSchema = (String)aRow.get(0);
-//                System.out.println(aTempSchema);
+                
+//                System.out.println("#############");
+//                System.out.println("aTempSchema:"+aTempSchema);
+//                
 //                rs = dmd.getTablePrivileges(null, aTempSchema, "%");
 //                while(rs.next()){
 //                    System.out.println(
@@ -92,28 +89,37 @@ private String SUBSYSTEM = "DBUtil";
 //                            rs.getString(7)
 //                            );
 //                }
+//                System.out.println("#############");
+//System.out.println("aTempSchema:"+aTempSchema);
+                rset = dmd.getTables(null,aTempSchema,"%",CommonConst.CATALOG_TYPE);
+//System.out.println(this.getResultSetCnt(rset));
+//                rsmd = rset.getMetaData();
                 
-                
-                rset = dmd.getTables(null,aTempSchema,"%",null);
-                
-                rsmd = rset.getMetaData();
-                
-//                for(int i=0;i<rsmd.getColumnCount();i++){
-//                    System.out.println(rsmd.getColumnName(i+1));
+//                System.out.println("***********");
+//                for(int i=1;i<=rsmd.getColumnCount();i++){
+//                    System.out.println(rsmd.getColumnName(i));
 //                }
+//                System.out.println("***********");
                 
                 HashMap aCols = new HashMap();
                 while(rset.next()) {
-                    if(aTempSchema.equals(aTempObjCategory = rset.getString(rsmd.getColumnLabel(1)))){;
-                        aTempObjScheme = rset.getString(rsmd.getColumnLabel(2));
-                        aTempObjName = rset.getString(rsmd.getColumnLabel(3));
-                        aTempObjType = rset.getString(rsmd.getColumnLabel(4));
-                        aTempObjDesc = rset.getString(rsmd.getColumnLabel(5));
+                    aTempObjCategory = rset.getString(2);
+//                    System.out.println("aTempObjCategory:"+aTempObjCategory);
+                    if(aTempSchema.equalsIgnoreCase(aTempObjCategory)){
+//                        aTempObjScheme = rset.getString(1);
+//                        System.out.println("rset.getString(1):"+rsmd.getColumnLabel(1)+":"+rsmd.getColumnName(1)+":"+rset.getString(1));
+//                        aTempObjName = rset.getString(3);
+//                        System.out.println("rset.getString(3):"+rsmd.getColumnLabel(3)+":"+rsmd.getColumnName(3)+":"+rset.getString(3));
+                        aTempObjType = rset.getString(4);
+//                        System.out.println("rset.getString(4):"+rsmd.getColumnLabel(4)+":"+rsmd.getColumnName(4)+":"+rset.getString(4));
+//                        aTempObjDesc = rset.getString(5);
+//                        System.out.println("rset.getString(5):"+rsmd.getColumnLabel(5)+":"+rsmd.getColumnName(5)+":"+rset.getString(5));
+                        
                         HashMap aObjMap = new HashMap();
                         aObjMap.put(CommonConst.CATALOG_INFO[3], aTempObjCategory);
-                        aObjMap.put(CommonConst.CATALOG_INFO[4], aTempObjScheme);
-                        aObjMap.put(CommonConst.CATALOG_INFO[0], aTempObjName);
-                        aObjMap.put(CommonConst.CATALOG_INFO[2], aTempObjDesc);
+                        aObjMap.put(CommonConst.CATALOG_INFO[4], rset.getString(1));
+                        aObjMap.put(CommonConst.CATALOG_INFO[0], rset.getString(3));
+                        aObjMap.put(CommonConst.CATALOG_INFO[2], rset.getString(5));
 
                         if(aCols.containsKey(aTempObjType)){
                             ((ArrayList)aCols.get(aTempObjType)).add(aObjMap);
@@ -127,6 +133,7 @@ private String SUBSYSTEM = "DBUtil";
 //                System.out.println(aCols);
                 if(aCols.size() == 0) aTempSchema = aTempSchema + CommonConst.NO_PERMISSION;
                 ret.put(aTempSchema, aCols);
+                
             }
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -910,6 +917,7 @@ private String SUBSYSTEM = "DBUtil";
                 rows.add(row);
             }
             ret.put(CommonConst.ROW_CNT, rowCnt);
+            System.out.println(ret);
         }catch(Exception e){
             e.printStackTrace();
         }

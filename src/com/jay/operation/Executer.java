@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.TreeMap;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -120,7 +121,7 @@ public class Executer {
         this.mDBUtil.rollback(this.mTargetDBConnection);
     }
 
-    public HashMap getCatalog() throws Exception {
+    public TreeMap getCatalog() throws Exception {
        return this.mDBUtil.getTableAndViews(this.mTargetDBConnection);
     }
     
