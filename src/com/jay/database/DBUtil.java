@@ -3,7 +3,7 @@ package com.jay.database;
 /**
  * @ï¿½ï¿½ï¿½Ï¸ï¿½ DBUtil.java
  * @author  Jay
- * @project JAYETL
+ * @project Arare
  * @ï¿½Û¼ï¿½ï¿½ï¿½ï¿½ï¿½2005.11.02
  * 
  */
@@ -39,10 +39,8 @@ private String SUBSYSTEM = "DBUtil";
     }
     
     public TreeMap getTableAndViews(DatabaseConnection aDBconnection) throws JayException {
-//        HashMap ret = new HashMap();
         TreeMap ret = new TreeMap();
         ResultSet rset = null;
-//        ResultSetMetaData rsmd = null;
         DatabaseMetaData dmd = null;
         ResultSet rs = null;
         ArrayList aTempList = null;
@@ -63,57 +61,19 @@ private String SUBSYSTEM = "DBUtil";
 
             String aTempSchema = null;
             String aTempObjCategory = null;
-//            String aTempObjScheme = null;
-//            String aTempObjName = null;
             String aTempObjType = null;
-//            String aTempObjDesc = null;
             
             it = aTempList.iterator();
             
             while(it.hasNext()){
                 ArrayList aRow = (ArrayList)it.next();
                 aTempSchema = (String)aRow.get(0);
-                
-//                System.out.println("#############");
-//                System.out.println("aTempSchema:"+aTempSchema);
-//                
-//                rs = dmd.getTablePrivileges(null, aTempSchema, "%");
-//                while(rs.next()){
-//                    System.out.println(
-//                            rs.getString(1)+":"+
-//                            rs.getString(2)+":"+
-//                            rs.getString(3)+":"+
-//                            rs.getString(4)+":"+
-//                            rs.getString(5)+":"+
-//                            rs.getString(6)+":"+
-//                            rs.getString(7)
-//                            );
-//                }
-//                System.out.println("#############");
-//System.out.println("aTempSchema:"+aTempSchema);
                 rset = dmd.getTables(null,aTempSchema,"%",CommonConst.CATALOG_TYPE);
-//System.out.println(this.getResultSetCnt(rset));
-//                rsmd = rset.getMetaData();
-                
-//                System.out.println("***********");
-//                for(int i=1;i<=rsmd.getColumnCount();i++){
-//                    System.out.println(rsmd.getColumnName(i));
-//                }
-//                System.out.println("***********");
-                
                 HashMap aCols = new HashMap();
                 while(rset.next()) {
                     aTempObjCategory = rset.getString(2);
-//                    System.out.println("aTempObjCategory:"+aTempObjCategory);
                     if(aTempSchema.equalsIgnoreCase(aTempObjCategory)){
-//                        aTempObjScheme = rset.getString(1);
-//                        System.out.println("rset.getString(1):"+rsmd.getColumnLabel(1)+":"+rsmd.getColumnName(1)+":"+rset.getString(1));
-//                        aTempObjName = rset.getString(3);
-//                        System.out.println("rset.getString(3):"+rsmd.getColumnLabel(3)+":"+rsmd.getColumnName(3)+":"+rset.getString(3));
                         aTempObjType = rset.getString(4);
-//                        System.out.println("rset.getString(4):"+rsmd.getColumnLabel(4)+":"+rsmd.getColumnName(4)+":"+rset.getString(4));
-//                        aTempObjDesc = rset.getString(5);
-//                        System.out.println("rset.getString(5):"+rsmd.getColumnLabel(5)+":"+rsmd.getColumnName(5)+":"+rset.getString(5));
                         
                         HashMap aObjMap = new HashMap();
                         aObjMap.put(CommonConst.CATALOG_INFO[3], aTempObjCategory);
@@ -130,7 +90,6 @@ private String SUBSYSTEM = "DBUtil";
                         }
                     }
                 }
-//                System.out.println(aCols);
                 if(aCols.size() == 0) aTempSchema = aTempSchema + CommonConst.NO_PERMISSION;
                 ret.put(aTempSchema, aCols);
                 
@@ -139,7 +98,6 @@ private String SUBSYSTEM = "DBUtil";
             ex.printStackTrace();
             throw new JayException(ex);
         }
-//        System.out.println(ret);
         return ret;
     }
 	
